@@ -1,5 +1,11 @@
 require_relative "boot"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+require "rails/all"
+=======
+>>>>>>> 424d64fb5a8290bcc93491dd5680ddb3d8a62e68
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
@@ -34,5 +40,6 @@ module Paynow
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
   end
 end
