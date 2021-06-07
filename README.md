@@ -22,4 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+<<<<<<< HEAD
 # paynow
+=======
+>>>>>>> 0fef508 (Initial commit)
