@@ -60,9 +60,9 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
-    bcrypt (3.1.16)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.7.5)
       msgpack (~> 1.0)
@@ -76,7 +76,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    childprocess (3.0.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
     devise (4.8.0)
@@ -86,10 +85,10 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
-    concurrent-ruby (1.1.9)
-    crass (1.0.6)
     erubi (1.10.0)
     ffi (1.15.1)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.10)
@@ -175,7 +174,6 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -186,13 +184,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (3.142.7)
-      childprocess (>= 0.5, < 4.0)
-      rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
-    shoulda-matchers (4.5.1)
-      activesupport (>= 4.2.0)
-      rubyzip (>= 1.2.2)
     spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -216,10 +208,6 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webdrivers (4.6.0)
-      nokogiri (~> 1.6)
-      rubyzip (>= 1.3.0)
-      selenium-webdriver (>= 3.0, < 4.0)
     webpacker (5.4.0)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
@@ -240,22 +228,19 @@ DEPENDENCIES
   byebug
   capybara
   devise
+  friendly_id (~> 5.1)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
-  rails (~> 6.1.3, >= 6.1.3.2)
+  rails (~> 6.1.3, >= 6.1.3.1)
   rspec-rails (~> 5.0.0)
-  sass-rails (>= 6)
-  selenium-webdriver
-  shoulda-matchers (~> 4.0)
   sass-rails (>= 6)
   spring
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
-  webdrivers
   webpacker (~> 5.0)
 
 RUBY VERSION
