@@ -44,6 +44,7 @@ group :development do
   gem 'spring'
 end
 
+<<<<<<< HEAD
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
@@ -52,5 +53,7 @@ group :test do
   gem 'webdrivers'
 end
 
+=======
+>>>>>>> 0fef508 (Initial commit)
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
