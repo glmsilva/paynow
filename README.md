@@ -61,4 +61,11 @@ Para rodar os testes, rode o seguinte comando no terminal:
 
 **Server:** Rails, puma
 
+
+## Documentação
+
+[Wiki](https://github.com/glmsilva/paynow/wiki)
+
+  
+
   
