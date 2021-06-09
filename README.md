@@ -1,28 +1,71 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Paynow
 
-Things you may want to cover:
+Um sistema gerenciador de pagamentos de uma plataforma b2b feita por mim utilizando Ruby on Rails e bootstrap
 
-* Ruby version
+## Instalação 
 
-* System dependencies
+Para rodar meu projeto, primeiro é necessário instalar o rails
+[aqui](http://guides.railsgirls.com/guides-ptbr/install)
 
-* Configuration
 
-* Database creation
 
-* Database initialization
+    
+## Rodar o Programa
 
-* How to run the test suite
+Clone o projeto
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+  $ git clone https://github.com/glmsilva/paynow.git
+```
 
-* Deployment instructions
+Vá até a pasta do projeto
 
-* ...
-<<<<<<< HEAD
-# paynow
-=======
->>>>>>> 0fef508 (Initial commit)
+```bash
+  $ cd paynow
+```
+
+Instale as dependências
+
+```bash
+  $ bundle install
+```
+
+Inicie o servidor
+
+```bash
+  $ rails server
+```
+Em seguida clique no link 
+
+[127.0.0.1:3000](https://127.0.0.1:3000)
+
+  
+## Rodando testes
+
+Para rodar os testes, rode o seguinte comando no terminal:
+
+```bash
+  rspec
+```
+
+  
+## Autor
+
+- [@glmsilva](https://www.github.com/glmsilva)
+
+  
+## Tech Stack
+
+**Client:** Bootstrap
+
+**Server:** Rails, puma
+
+
+## Documentação
+
+[Wiki](https://github.com/glmsilva/paynow/wiki)
+
+  
+
+  
