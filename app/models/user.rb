@@ -5,12 +5,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, :lastname, presence: true
-
+  validates :email, presence: true, email: true
   enum status: { active: 0, inactive: 1}
   enum role: { employee: 0, company_admin: 5, admin: 10 }
 
   def full_name
     "#{name} #{lastname}"
+  end
+
+  def domain
+    email.split('@').last.split('.').first
   end
 
 end
