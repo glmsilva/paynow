@@ -26,7 +26,7 @@ describe 'Admin authentication' do
 
    click_on('Registrar')
 
-   expect(page).to have_content('não pode ficar em branco', count: 4)
+   expect(page).to have_content('não pode ficar em branco', count: 5)
   end
 
   it 'login succesfully' do

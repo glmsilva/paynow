@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'index', to: 'home#index'
   end
+
+  namespace :employees do
+    get 'index', to: 'home#index'
+    resources :companies, only: %i[new create]
+  end
 end

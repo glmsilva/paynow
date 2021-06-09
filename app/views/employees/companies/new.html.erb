@@ -1,0 +1,14 @@
+<% if user_signed_in? && !@company_exists %>
+<h1>Registre sua Empresa</h1>
+  <%= form_with model: [:employees,@company] do |form| %>
+    <%= form.label :name, 'Razão Social' , class: "form-label mt-4"%>
+    <%= form.text_field :name, class: "form-control" %>
+    <%= form.label :cnpj, 'CNPJ' , class: "form-label mt-4"%>
+    <%= form.text_field :cnpj, class: "form-control" %>
+    <%= form.label :billing_email, 'Email de Faturamento', class: "form-label mt-4" %>
+    <%= form.email_field :billing_email, class: "form-control" %>
+    <%= form.label :billing_address, 'Endereço de Faturamento', class: "form-label mt-4" %>
+    <%= form.text_field :billing_address%>
+    <%= form.submit 'Registrar Empresa'%>
+    <%end %>
+<% end %>
