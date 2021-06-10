@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    if current_user
+    if current_user && current_user.active?
       company = current_user.domain
       if company == 'paynow'
         current_user.admin!
@@ -8,6 +8,8 @@ class HomeController < ApplicationController
       else
         redirect_to employees_index_path
       end
+    else
+
     end
   end
 end

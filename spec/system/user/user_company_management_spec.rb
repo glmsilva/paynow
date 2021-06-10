@@ -6,7 +6,7 @@ describe 'Users Manages their company' do
                         lastname: 'Doe',
                         email: 'johndoe@codeplay.com.br',
                         password: 12345678,
-                        status: 1)
+                        status: 0)
 
     login_as user, scope: :user
     visit root_path
@@ -18,7 +18,7 @@ describe 'Users Manages their company' do
                         lastname: 'Doe',
                         email: 'johndoe@codeplay.com.br',
                         password: 12345678,
-                        status: 1)
+                        status: 0)
 
     login_as user, scope: :user
     visit root_path
@@ -30,6 +30,27 @@ describe 'Users Manages their company' do
 
     expect(page).to have_content('Empresa cadastrada com sucesso. Bem vindo a página da sua empresa.')
 
+  end
+
+  it 'and view company token' do
+    company = Company.create!(name: 'Codeplay',
+                              cnpj: 77418744000155,
+                              billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
+                              billing_email: 'genericemail@codeplay.com.br',
+                              status: 0)
+    user = User.create!(name: 'John',
+                        lastname: 'Doe',
+                        email: 'johndoe@codeplay.com.br',
+                        password: '123456',
+                        status: 0,
+                        role: 5)
+
+    Employee.create!(user: user, company: company)
+    login_as user, scope: :user
+    visit root_path
+    click_on 'Ver Token'
+
+    expect(page).to have_content('Ver Token')
   end
 
 end

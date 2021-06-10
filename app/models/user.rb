@@ -17,4 +17,14 @@ class User < ApplicationRecord
     email.split('@').last.split('.').first
   end
 
+  def active_for_authentication?
+    super && active?
+  end
+
+  #def inactive_message
+  # "Conta desativada"
+    #end
+
+
+
 end
