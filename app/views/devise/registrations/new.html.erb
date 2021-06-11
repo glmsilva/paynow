@@ -1,38 +1,42 @@
-<h2>Registrar-se</h2>
+<main class="card col-lg-3 col-12 text-center container">
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <h1>Registrar-se</h1>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name, 'Nome' %>
-    <%= f.text_field :name %>
+  <div class="form-floating">
+    <%= f.text_field :name, class: 'form-control', placeholder: 'João' %>
+    <%= f.label :name, 'Nome'%>
+    
   </div>
 
-  <div class="field">
+  <div class="form-floating">
+  <%= f.text_field :lastname, class: 'form-control', placeholder: 'da Silva' %>
     <%= f.label :lastname, 'Sobrenome' %>
-    <%= f.text_field :lastname %>
+    
   </div>
 
-  <div class="field">
-    <%= f.label :email, class: "form-label mt-4" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+  <div class="form-floating">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: 'email@email.com' %>
+    <%= f.label :email%>
   </div>
 
-  <div class="field">
-    <%= f.label :password, 'Senha', class: "form-label mt-4" %>
+  <div class="form-floating">
+  <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: 'Senha' %>
+    <%= f.label :password, 'Senha'%>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> caracteres mínimo)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    <% end %>
+    
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, 'Confirmar Senha', class: "form-label mt-4"  %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+  <div class="form-floating">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: 'Confirmar Senha' %>
+    <%= f.label :password_confirmation, 'Confirmar Senha'%>
   </div>
 
   <div class="actions">
-    <%= f.submit "Registrar", class: "btn btn-primary" %>
+    <%= f.submit "Registrar", class: "btn btn-primary mt-4" %>
   </div>
 <% end %>
 
