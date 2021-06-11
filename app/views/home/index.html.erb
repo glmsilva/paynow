@@ -1,6 +1,115 @@
-<% if user_signed_in? %>
-  <%=link_to 'Sair', destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to 'Entrar', new_user_session_path %>
-<%= link_to 'Registrar-se', new_user_registration_path %>
-<% end %>
+<div class="container">
+  <header>
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <%= image_tag("pexels-christina-morillo-1181352.jpg", class: "d-block mx-lg-auto img-fluid", size: "700x500") %>
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">Realize pagamentos facilmente com Paynow</h1>
+        <p class="lead"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed feugiat sem. Nunc tristique nibh congue interdum viverra. Vivamus in. </p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Saiba Mais</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Cadastre-se</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <article>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"></use></svg>
+        </div>
+        <h2>Lorem Ipsum</h2>
+        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed augue at mi finibus finibus. Aenean luctus, urna nec porta semper, nisi purus volutpat ipsum, non lacinia turpis dui tempor erat. Integer ac tempor tortor. </p>
+        <a href="#" class="icon-link">
+          Saiba mais
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"></use></svg>
+        </div>
+        <h2>Lorem Ipsum</h2>
+        <p>Mauris tincidunt nisi ac turpis elementum tincidunt. Donec a dolor ut mi mattis sodales. Vivamus eros augue, sodales et consectetur tempor, mollis vel sem. </p>
+        <a href="#" class="icon-link">
+          Saiba mais
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
+        </div>
+        <h2>Lorem Ipsum</h2>
+        <p>Sed ac sem condimentum, mattis ipsum ut, varius mi. Mauris eu ligula laoreet, fringilla justo id, dictum odio. Pellentesque non. </p>
+        <a href="#" class="icon-link">
+          Saiba mais
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+      </div>
+    </div>
+
+    <hr class="feature-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Lorem Ipsum <span class="text text-dark">Morbi rhoncus.</span></h2>
+        <p class="lead">Aenean eu efficitur odio. Quisque id euismod sem. Morbi rhoncus, erat in tincidunt pretium, purus mauris scelerisque eros, a scelerisque ex mi sit amet nisl. Phasellus augue sem, tristique varius massa non, dignissim suscipit dolor. Praesent sed leo dapibus, vehicula. </p>
+      </div>
+      <div class="col-md-5">
+        <%= image_tag("pexels-negative-space-34577.jpg", class: "bd-placeholder-img featurette-image bd-placeholder-img-lg mx-auto", size: "450") %>
+      </div>
+    </div>
+
+    <hr class="feature-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Quisque dignissim. <span class="text-dark"> Duis iaculis enim. </span></h2>
+        <p class="lead">Etiam sed orci tempus nunc euismod porttitor convallis eu erat. Maecenas rhoncus ullamcorper mi, ac. </p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <%= image_tag("pexels-pixabay-50987.jpg", class: "bd-placeholder-img featurette-image bd-placeholder-img-lg mx-auto", size: "450") %>
+      </div>
+    </div>
+
+    <hr class="feature-divider">
+  </article>
+
+  <footer class="container py-5">
+    <div class="row">
+      <div class="col-12 col-md">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"></circle><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path></svg>
+        <small class="d-block mb-3 text-muted">© 2017–2021</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Nossa Solução</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">Coisa Legal</a></li>
+          <li><a class="link-secondary" href="#">Recurso Aleatório</a></li>
+          <li><a class="link-secondary" href="#">Recurso de Equipe</a></li>
+          <li><a class="link-secondary" href="#">Coisas para desenvolvedores</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Clientes</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">Clientes</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Sobre a Paynow</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">Time</a></li>
+          <li><a class="link-secondary" href="#">Localização</a></li>
+          <li><a class="link-secondary" href="#">Política de Privacidade</a></li>
+          <li><a class="link-secondary" href="#">Termos</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+
+</div>

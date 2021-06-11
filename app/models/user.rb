@@ -9,6 +9,7 @@ class User < ApplicationRecord
   enum status: { active: 0, inactive: 1}
   enum role: { employee: 0, company_admin: 5, admin: 10 }
 
+
   def full_name
     "#{name} #{lastname}"
   end

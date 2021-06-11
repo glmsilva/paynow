@@ -93,7 +93,7 @@ describe 'User account management' do
     click_on 'Entrar'
     fill_in 'Email', with: 'johndoe@codeplay.com.br'
     fill_in 'Senha', with: '123asdfgj'
-    click_on 'Entrar'
+    find(:css, ".actions .login").click
 
     expect(page).to have_content('Email ou senha inválida')
   end
@@ -117,7 +117,7 @@ describe 'User account management' do
     click_on 'Entrar'
     fill_in 'Email', with: 'johndoe@codeplay.com.br'
     fill_in 'Senha', with: '123456'
-    click_on 'Entrar'
+    find(:css, ".actions .login").click
 
     expect(page).to have_content('Esta conta está desativada')
     expect(current_path).to eq(new_user_session_path)

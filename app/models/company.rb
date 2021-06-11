@@ -1,6 +1,7 @@
 class Company < ApplicationRecord
   before_create :set_token
   has_many :employees
+  has_many :users, through: :employees
   enum status: {active: 0, inactive: 1}
 
   def set_token

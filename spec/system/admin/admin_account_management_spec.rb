@@ -22,6 +22,7 @@ describe 'Admin authentication' do
 
   it 'fields cannot be blank' do
    visit root_path
+   click_on 'Login'
    click_on('Registrar-se')
 
    click_on('Registrar')
@@ -33,11 +34,13 @@ describe 'Admin authentication' do
     User.create!(email: 'johndoe@paynow.com.br', password: 'ec1@eR0r', name: 'John', lastname: 'Doe', role: 10)
 
     visit root_path
+    click_on 'Login'
     click_on 'Entrar'
 
     fill_in 'Email', with: 'johndoe@paynow.com.br'
     fill_in 'Senha', with: 'ec1@eR0r'
-    click_on 'Entrar'
+    find(:css, ".actions .login").click
+
 
     expect(page).to have_content('Login efetuado com sucesso')
     expect(page).to have_content('Bem vindo, John Doe')
@@ -47,7 +50,7 @@ describe 'Admin authentication' do
   it 'fields cannot be blank' do
     visit root_path
     click_on 'Entrar'
-    click_on 'Entrar'
+    find(:css, ".actions .login").click
 
     expect(page).to have_content('Email ou senha inválida')
   end
@@ -58,7 +61,7 @@ describe 'Admin authentication' do
 
     fill_in 'Email', with: 'johndoe@paynow.com.br'
     fill_in 'Senha', with: 'ec1@eR0r'
-    click_on 'Entrar'
+    find(:css, ".actions .login").click
 
     expect(page).to have_content('Email ou senha inválida')
   end

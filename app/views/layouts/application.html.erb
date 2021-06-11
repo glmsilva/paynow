@@ -6,12 +6,24 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'applicationm', media: 'all', 'data-turbolink-track': 'reaload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolink-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.0.1/dist/united/bootstrap.min.css" rel="stylesheet">
   </head>
 
   <body>
+
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <%= render "layouts/admin_navbar" %>
+    <% else %>
+      <%= render "layouts/user_navbar" %>
+    <% end %>
+  <% else %>
+    <%= render "layouts/navbar" %>
+  <% end %>
    <p class="notice"><%= notice %></p>
    <p class="alert"><%= alert %></p>
     <%= yield %>

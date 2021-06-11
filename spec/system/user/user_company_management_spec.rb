@@ -50,7 +50,7 @@ describe 'Users Manages their company' do
     visit root_path
     click_on 'Ver Token'
 
-    expect(page).to have_content('Ver Token')
+    expect(page).to have_content(company.token)
   end
 
 end
