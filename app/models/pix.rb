@@ -1,0 +1,2 @@
+class Pix < PaymentMethod
+end

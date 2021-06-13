@@ -1,0 +1,2 @@
+class CreditCard < PaymentMethod
+end
