@@ -1,0 +1,73 @@
+<div class="row">
+    <%= render "layouts/admin_sidebar" %>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <nav aria-label="breadcrumb ">
+    <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item fs-4"><%=link_to 'Inicio', admin_index_path%> </li>
+        <li class="breadcrumb-item fs-4 active" aria-current="page">Clientes</li>
+    </ol>
+    </nav>
+    <hr class="feature-divider">
+
+<div class="row" >
+    <div class="card w-25">
+        <div class="card-body">
+            <h5 class="card-title">Empresas</h5>
+            <p class="card-text"><%= @total_employees %> Colaboradores Cadastrados</p>
+            <a href="#" class="btn btn-primary">Button</a>
+        </div>
+    </div>
+    <div class="card w-25">
+        <div class="card-body">
+            <h5 class="card-title">Produtos</h5>
+            <p class="card-text"><%= @total_employees %> Produtos Cadastrados</p>
+            <a href="#" class="btn btn-primary">Ver produtos</a>
+        </div>
+    </div>
+</div>
+    
+        <% if @companies.empty? %>
+        <p>Nenhum cliente cadastrado </p>
+        <% end%>
+    
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">CNPJ</th>
+            <th scope="col">Email</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Status</th>
+            <th scope="col">Criado em</th>
+            <th scope="col">Atualizado em</th>
+            <th scope="col">Token</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @companies.each do |company| %>
+            <tr>
+            <th scope="row"><%= company.id%></th>
+            <td><%= link_to company.name, admin_company_path(company), class: 'text-dark' %> <%=link_to 'Editar', edit_admin_company_path(company) %> </td>
+            <td><%= company.cnpj %></td>
+            <td><%= company.billing_email %></td>
+            <td><%= company.billing_address %></td>
+            <td><% if company.active? %>
+                    Ativo 
+                <% else %>
+                    Inativo
+                <% end %>
+            </td>
+
+            <td><%= company.created_at %></td>
+            <td><%= company.updated_at %></td>
+            <td><%= company.token %> <%= link_to 'Alterar Token', change_token_admin_company_path(company), method: :post, data: {confirm: "Tem certeza?"} %></td>
+            
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    </main>
+</div>
+
+

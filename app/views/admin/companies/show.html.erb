@@ -1,0 +1,47 @@
+<div class="row">
+    <%= render "layouts/admin_sidebar" %>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <nav aria-label="breadcrumb ">
+    <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item fs-4"><%=link_to 'Inicio', admin_index_path%> </li>
+        <li class="breadcrumb-item fs-4"><%= link_to 'Clientes', admin_companies_path%></li>
+        <li class="breadcrumb-item fs-4 active" aria-current="page"><%= @company.name %></li>
+    </ol>
+    </nav>
+    <hr class="feature-divider">
+
+
+
+
+
+<div class="card mb-3">
+  <h3 class="card-header"><%= @company.name %></h3>
+  <div class="card-body">
+    <h5 class="card-title"><%=@company.token %></h5>
+    <h6 class="card-subtitle text-muted">Token</h6>
+  </div>
+    <div class="card-body">
+    <p class="card-text"><%= link_to 'Alterar Token', change_token_admin_company_path(@company), method: :post, data: {confirm: "Tem certeza?"} %></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= @company.cnpj%></li>
+    <li class="list-group-item"><%= @company.billing_address %></li>
+    <li class="list-group-item"><%= @company.billing_email%></li>
+  </ul>
+  <div class="card-body">
+  <% if @company.active? %>
+        <%= link_to 'Inativar', inactivate_admin_company_path(@company), method: :post  , class: 'card-link' %>
+    <% else %>
+        <%= link_to 'Ativar', inactivate_admin_company_path(@company), method: :post  , class: 'card-link'  %>
+  <% end %>
+    <%=link_to 'Editar', edit_admin_company_path(@company), class: 'card-link' %> 
+  </div>
+  <div class="card-footer text-muted">
+    Criado em: <%= l @company.created_at, format: :short%>
+  </div>
+  <div class="card-footer text-muted">
+    Atualizado em: <%= l @company.updated_at, format: :short%>
+  </div>
+</div>
+
+<%= link_to 'Voltar', admin_companies_path  %>

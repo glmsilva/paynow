@@ -1,0 +1,40 @@
+<div class="row">
+    <%= render "layouts/admin_sidebar" %>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <nav aria-label="breadcrumb ">
+    <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item fs-4"><%=link_to 'Inicio', admin_index_path%> </li>
+        <li class="breadcrumb-item fs-4"><%= link_to 'Clientes', admin_companies_path%></li>
+        <li class="breadcrumb-item fs-4 " aria-current="page"><%= @company.name %></li>
+        <li class="breadcrumb-item fs-4 active" aria-current="page">Editar</li>
+    </ol>
+    </nav>
+    <hr class="feature-divider">
+
+    <%= form_with model: [:admin, @company] do |form| %>
+        <div class="mb-3">
+            <%= form.label :name, 'Nome', class: 'form-label' %>
+            <%= form.text_field :name , class: 'form-control'%>
+        </div>
+        <div class="mb-3">
+            <%= form.label :cnpj, class: 'form-label'%>
+            <%= form.number_field :cnpj, class: 'form-control'%>
+        </div>
+        <div class="mb-3">
+            <%= form.label :billing_address, 'Endereço de Faturamento', class: 'form-label'%>
+            <%= form.text_field :billing_address, class: 'form-control'%>
+        </div>
+        <div class="mb-3">
+            <%= form.label :billing_email, 'Email de Faturamento' ,class: 'form-label'%>
+            <%= form.email_field :billing_email, class: 'form-control'%>
+        </div>
+        <div class="mb-3">
+        <%= link_to 'Inativar', inactivate_admin_company_path(@company), method: :post  , class: 'btn-lg btn-outline-dark' %>
+            <%= form.submit 'Salvar', class: 'btn-lg btn-primary' %>
+            
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        </div>
+    <%end%>
+
+    <%= link_to 'Voltar', admin_companies_path %>
+    

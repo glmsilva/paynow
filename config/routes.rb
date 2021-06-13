@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   #resources 'companies'
   namespace :admin do
     get 'index', to: 'home#index'
+    resources :companies, only: %i[edit update show index] do 
+      post 'inactivate', on: :member
+      post 'change_token', on: :member
+
+    end
+    
   end
 
   namespace :employees do

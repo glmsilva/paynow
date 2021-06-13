@@ -25,13 +25,18 @@
     <%= render "layouts/navbar" %>
   <% end %>
   <% if notice %>
-  <p class="notice"><%= notice %></p>
+    <div class="alert alert-dismissible alert-success">
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <%= notice %>
+    </div>
   <% end %>
   <% if alert %>
-  <p class="alert"><%= alert %></p>
+    <div class="alert alert-dismissible alert-warning">
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <p class="alert"><%= alert %></p>
+    </div>
   <% end %>
-   
-   
+  
     <%= yield %>
   </body>
 </html>

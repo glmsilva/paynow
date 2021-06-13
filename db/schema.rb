@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_10_093100) do
+ActiveRecord::Schema.define(version: 2021_06_13_191942) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -34,6 +34,27 @@ ActiveRecord::Schema.define(version: 2021_06_10_093100) do
     t.index ["user_id"], name: "index_employees_on_user_id"
   end
 
+  create_table "log_companies_changes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "status"
+    t.integer "category"
+    t.index ["company_id"], name: "index_log_companies_changes_on_company_id"
+    t.index ["user_id"], name: "index_log_companies_changes_on_user_id"
+  end
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.string "name"
+    t.decimal "chargefee"
+    t.integer "maxfee"
+    t.integer "status"
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -52,4 +73,6 @@ ActiveRecord::Schema.define(version: 2021_06_10_093100) do
 
   add_foreign_key "employees", "companies"
   add_foreign_key "employees", "users"
+  add_foreign_key "log_companies_changes", "companies"
+  add_foreign_key "log_companies_changes", "users"
 end
