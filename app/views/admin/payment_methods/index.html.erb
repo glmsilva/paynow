@@ -1,0 +1,70 @@
+<div class="row">
+    <%= render "layouts/admin_sidebar" %>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <nav aria-label="breadcrumb ">
+    <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item fs-4"><%=link_to 'Inicio', admin_index_path%> </li>
+        <li class="breadcrumb-item fs-4 active" aria-current="page">Métodos de Pagamento</li>
+    </ol>
+    </nav>
+    <hr class="feature-divider">
+
+    <h1> Cadastrar Novos Métodos de Pagamento </h1>
+
+    <p class="fs-4">Métodos de Pagamento disponíveis:</p>
+    <p class="fs-5">Cartões de Crédito</p>
+    <% if @cards.empty? %>
+        <p class="text-danger">Nenhum cartão de crédito cadastrado</p>
+    <% else %>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <% @cards.each do |credit_card|%>
+                <div class="col">
+                    <div class="card">
+                        <%= image_tag(credit_card.icon, class: 'card-img-top') %>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= credit_card.name %></h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+    <%end%>
+
+    <p class="fs-5">Boleto Bancário</p>
+    <% if @boletos.empty? %>
+        <p class="text-danger">Nenhum boleto cadastrado</p>
+    <% else %>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <% @boletos.each do |boleto|%>
+                <div class="col">
+                    <div class="card">
+                        <%= image_tag(boleto.icon, class: 'card-img-top') %>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= boleto.name %></h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+    <%end%>
+
+    <p class="fs-5">PIX</p>
+    <% if @pixs.empty? %>
+        <p class="text-danger">Nenhum pix cadastrado</p>
+    <% else %>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <% @pixs.each do |pix|%>
+                <div class="col">
+                    <div class="card">
+                        <%= image_tag(pix.icon, class: 'card-img-top') %>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= pix.name %></h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+    <%end%>

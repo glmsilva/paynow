@@ -8,8 +8,12 @@ Rails.application.routes.draw do
     resources :companies, only: %i[edit update show index] do 
       post 'inactivate', on: :member
       post 'change_token', on: :member
-
     end
+    get 'charges', to: 'charges#index'
+    resources :payment_methods, only: %i[index]
+    resources :credit_cards
+    resources :boletos
+    resources :pix
     
   end
 
