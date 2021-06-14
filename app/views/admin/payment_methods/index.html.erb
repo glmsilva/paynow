@@ -9,21 +9,72 @@
     </nav>
     <hr class="feature-divider">
 
-    <h1> Cadastrar Novos Métodos de Pagamento </h1>
+    <h1 class="fs-3"> Cadastrar Novos Métodos de Pagamento </h1>
+    <div class="row">
+        <div class="col-12 col-md-2 mb-3">
+            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#cardtrigger">
+                Cadastrar novo cartão
+            </button>
+        </div>
+        <div class="col-12 col-md-2 mb-3">
+            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#boletotrigger">
+                Cadastrar novo boleto
+            </button>
+        </div>
+        <div class="col-12 col-md-2 mb-3">
+            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#pixtrigger">
+                Cadastrar novo pix
+            </button>
+        </div>
+
+    </div>
+
+
+<div class="modal fade" id="cardtrigger" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Token</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: [:admin,CreditCard.new] do |form| %>
+            <%= form.label :name, 'Nome', class: 'form-label' %>
+            <%= form.text_field :name , class: 'form-control' %>
+            <%= form.label :chargefee,'Taxa de Cobrança %' ,class: 'form-label' %>
+            <%= form.number_field :chargefee , class: 'form-control' %>
+            <%= form.label :maxfee,'Taxa Máxima em R$', class: 'form-label' %>
+            <%= form.number_field :maxfee, class: 'form-control' %>
+            <%= form.label :icon, 'Ícone', class: 'form-label' %>
+            <%= form.file_field :icon, class: 'form-control mb-3' %>
+            <%= form.submit 'Cadastrar Cartão de Crédito' , class:'btn btn-dark'%>
+      <% end %>
+        
+      </div>
+      <div class="modal-footer">
+      
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     <p class="fs-4">Métodos de Pagamento disponíveis:</p>
     <p class="fs-5">Cartões de Crédito</p>
     <% if @cards.empty? %>
-        <p class="text-danger">Nenhum cartão de crédito cadastrado</p>
+        <p class="text-danger">Nenhum cadastrado</p>
     <% else %>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <% @cards.each do |credit_card|%>
                 <div class="col">
                     <div class="card">
+                    <% if credit_card.icon.attached? %>
                         <%= image_tag(credit_card.icon, class: 'card-img-top') %>
+                    <%end%>
                         <div class="card-body">
                             <h5 class="card-title"><%= credit_card.name %></h5>
-                            <p class="card-text"></p>
+                            <p class="card-text"><%= link_to 'Editar', edit_admin_credit_card_path(credit_card) %></p>
                         </div>
                     </div>
                 </div>
@@ -33,7 +84,7 @@
 
     <p class="fs-5">Boleto Bancário</p>
     <% if @boletos.empty? %>
-        <p class="text-danger">Nenhum boleto cadastrado</p>
+        <p class="text-danger">Nenhum cadastrado</p>
     <% else %>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <% @boletos.each do |boleto|%>
@@ -52,7 +103,7 @@
 
     <p class="fs-5">PIX</p>
     <% if @pixs.empty? %>
-        <p class="text-danger">Nenhum pix cadastrado</p>
+        <p class="text-danger">Nenhum cadastrado</p>
     <% else %>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <% @pixs.each do |pix|%>
@@ -68,3 +119,4 @@
             <%end%>
         </div>
     <%end%>
+</div>
