@@ -9,7 +9,6 @@ class HomeController < ApplicationController
         redirect_to employees_index_path
       end
     else
-
     end
   end
 end

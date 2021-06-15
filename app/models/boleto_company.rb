@@ -1,0 +1,2 @@
+class BoletoCompany < PaymentMethodsCompany
+end

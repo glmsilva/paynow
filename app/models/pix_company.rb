@@ -1,0 +1,2 @@
+class PixCompany < PaymentMethodsCompany
+end

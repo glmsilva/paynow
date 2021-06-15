@@ -1,0 +1,2 @@
+class CreditCardCompany < PaymentMethodsCompany
+end
