@@ -1,0 +1,45 @@
+<div class="row">
+    <%= render "layouts/admin_sidebar" %>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <nav aria-label="breadcrumb ">
+    <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item fs-4"><%=link_to 'Inicio', admin_index_path%> </li>
+        <li class="breadcrumb-item fs-4">Métodos de Pagamento</li>
+        <li class="breadcrumb-item fs-4 active" aria-current="page"><%= payment_method.name %></li>
+
+    </ol>
+    </nav>
+    <hr class="feature-divider">
+
+    
+<div class="card mb-3">
+  <h3 class="card-header"><%= payment_method.name %></h3>
+  <div class="card-body">
+    <% if payment_method.icon.attached? %>
+      <%= image_tag(payment_method.icon, class: 'card-img-top', size: "100x100") %>
+    <%end%>
+  </div>
+    <div class="card-body">
+    <p class="card-text"></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Taxa de Cobrança: <%= number_to_percentage payment_method.chargefee, precision: 1%></li>
+    <li class="list-group-item">Taxa Máxima: <%= number_to_currency payment_method.maxfee %></li>
+  </ul>
+  <div class="card-body">
+  <% if payment_method.active? %>
+        <%= link_to 'Inativar', link_inactivate, method: :post  , class: 'card-link' %>
+    <% else %>
+        <%= link_to 'Ativar', link_activate, method: :post  , class: 'card-link'  %>
+  <% end %>
+    <%=link_to 'Editar', link_edit , class: 'card-link' %> 
+  </div>
+  <div class="card-footer text-muted">
+    Criado em: <%= l payment_method.created_at, format: :short%>
+  </div>
+  <div class="card-footer text-muted">
+    Atualizado em: <%= l payment_method.updated_at, format: :short%>
+  </div>
+</div>
+
+<%= link_to 'Voltar', admin_payment_methods_path %>

@@ -11,9 +11,18 @@ Rails.application.routes.draw do
     end
     get 'charges', to: 'charges#index'
     resources :payment_methods, only: %i[index]
-    resources :credit_cards
-    resources :boletos
-    resources :pix
+    resources :credit_cards do 
+      post 'inactivate', on: :member
+      post 'activate', on: :member
+    end
+    resources :boletos do 
+      post 'inactivate', on: :member
+      post 'activate', on: :member
+    end
+    resources :pixes do 
+      post 'inactivate', on: :member
+      post 'activate', on: :member
+    end
     
   end
 

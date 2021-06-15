@@ -4,6 +4,9 @@ module Admin
             @cards = CreditCard.all 
             @boletos = Boleto.all 
             @pixs = Pix.all
+            @boleto = Boleto.new
+            @card = CreditCard.new
+            @pix = Pix.new
         end
     end
 end

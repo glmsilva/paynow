@@ -16,6 +16,30 @@ module Admin
             @card = CreditCard.find(params[:id])
         end
 
+        def edit 
+            @card = CreditCard.find(params[:id])
+        end
+
+        def update
+            @card = CreditCard.find(params[:id])
+            @card.update(credit_card_params)
+            redirect_to admin_credit_card_path(@card), notice: 'Atualizado com sucesso'
+        end
+
+        def inactivate 
+            @card = CreditCard.find(params[:id])
+            @card.inactive!
+            @card.save
+            redirect_to admin_credit_card_path(@card), notice: 'Inativado com sucesso'
+        end
+
+        def activate 
+            @card = CreditCard.find(params[:id])
+            @card.active! 
+            @card.save
+            redirect_to admin_credit_card_path(@card), notice: 'Ativado com sucesso'
+        end
+
         private 
 
         def credit_card_params

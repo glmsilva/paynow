@@ -1,0 +1,21 @@
+<div class="row">
+    <%= render "layouts/admin_sidebar" %>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <nav aria-label="breadcrumb ">
+    <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item fs-4"><%=link_to 'Inicio', admin_index_path%> </li>
+        <li class="breadcrumb-item fs-4"><%= link_to 'Métodos de Pagamento', admin_payment_methods_path %></li>
+        <li class="breadcrumb-item fs-4"><%= link_to @boleto.name, admin_boleto_path(@boleto) %></li>
+        <li class="breadcrumb-item fs-4">Editar</li>
+
+    </ol>
+    </nav>
+    <hr class="feature-divider">
+
+<%= render 'admin/payment_methods/form', payment_method: @boleto, button_label: 'Salvar' %>
+<%= link_to 'Voltar', admin_payment_methods_path, class: 'me-4 btn btn-sm btn-outline-primary mt-4' %> 
+<% if @boleto.active? %> 
+    <%= link_to 'Inativar', inactivate_admin_boleto_path(@boleto), method: :post, class: 'btn btn-outline-dark mt-4' %>
+<% else %>
+    <%= link_to 'Ativar', activate_admin_boleto_path(@boleto), method: :post, class: 'btn btn-outline-dark mt-4' %>
+<% end %>

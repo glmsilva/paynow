@@ -1,0 +1,11 @@
+<%= form_with model: [:admin,payment_method] do |form| %>
+            <%= form.label :name, 'Nome', class: 'form-label' %>
+            <%= form.text_field :name , class: 'form-control' %>
+            <%= form.label :chargefee,'Taxa de Cobrança %' ,class: 'form-label' %>
+            <%= form.number_field :chargefee , class: 'form-control' %>
+            <%= form.label :maxfee,'Taxa Máxima em R$', class: 'form-label' %>
+            <%= form.number_field :maxfee, class: 'form-control' %>
+            <%= form.label :icon, 'Ícone', class: 'form-label' %>
+            <%= form.file_field :icon, class: 'form-control mb-3' %>
+            <%= form.submit button_label , class:'btn btn-dark btn-lg'%>
+<% end %>
