@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_15_121835) do
+ActiveRecord::Schema.define(version: 2021_06_16_172854) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -104,6 +104,21 @@ ActiveRecord::Schema.define(version: 2021_06_15_121835) do
     t.index ["payment_method_id"], name: "index_payment_methods_companies_on_payment_method_id"
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price"
+    t.integer "boleto"
+    t.integer "credit"
+    t.integer "pix"
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "company_id", null: false
+    t.string "token"
+    t.index ["company_id"], name: "index_products_on_company_id"
+    t.index ["token"], name: "index_products_on_token", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -128,4 +143,5 @@ ActiveRecord::Schema.define(version: 2021_06_15_121835) do
   add_foreign_key "log_companies_changes", "users"
   add_foreign_key "payment_methods_companies", "companies"
   add_foreign_key "payment_methods_companies", "payment_methods"
+  add_foreign_key "products", "companies"
 end

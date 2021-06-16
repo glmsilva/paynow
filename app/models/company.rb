@@ -2,6 +2,8 @@ class Company < ApplicationRecord
   before_create :set_token
   has_many :employees
   has_many :users, through: :employees
+  has_many :products
+  
   enum status: {active: 0, inactive: 1}
 
   validates :name, :billing_address, :billing_email, presence: :true
