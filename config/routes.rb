@@ -33,8 +33,8 @@ Rails.application.routes.draw do
       resources :payment_methods_companies, only: %i[create update show] do 
         post 'inactivate', on: :member
       end
-      
-  end
+    end
     resources :companies, only: %i[new create]
+    resources :products, only: %i[index create edit update show]
   end
 end

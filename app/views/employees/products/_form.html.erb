@@ -1,0 +1,14 @@
+<%= form_with model: product, url: employees_products_path, local: false  do |form| %>
+  <%= form.label :name, 'Nome', class: 'form-label' %>
+  <%= form.text_field :name,  class: 'form-control'%>
+  <%= form.label :price, 'Preço', class: 'form-label' %>
+  <%= form.number_field :price, class: 'form-control'%>
+  <p>Descontos em %:</p>
+  <%= form.label :boleto, 'Boleto', class: 'form-label' %>
+  <%=form.number_field :boleto, class: 'form-control'%>
+  <%=form.label :credit, 'Cartão de Crédito' , class: 'form-label'%>
+  <%= form.number_field :credit, class: 'form-control'%>
+  <%= form.label :pix, 'Pix', class: 'form-label' %>
+  <%=form.number_field :pix, class: 'form-control'%>
+  <%= form.submit 'Cadastrar', class:'btn btn-primary mt-3' %>
+<%end%>

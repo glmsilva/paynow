@@ -1,0 +1,41 @@
+<% if @products.empty? %>
+<p class="fs-5 mt-4">Nenhum produto cadastrado</p>
+<% end %>
+<!-- modal registro produto --> 
+
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ProductTrigger">
+        Cadastrar Produto
+    </button>
+</div>
+
+<div class="modal fade" id="ProductTrigger" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+            Produto
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+      <%= render partial: 'form', locals: {product: @product} %>
+
+        
+      </div>
+      <div class="modal-footer">
+      
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% @products.each do |product| %>
+    <%= product.name%>
+    <%= product.price%>
+    <%= number_to_percentage product.boleto%>
+    <%= number_to_percentage product.credit%>
+    <%= number_to_percentage product.pix %>
+    <%= link_to 'Editar', edit_employees_product_path(product) %>
+<%end%>

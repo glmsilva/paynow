@@ -1,0 +1,8 @@
+  <%= @product.name%>
+  <%= number_to_currency @product.price%>
+  <%= number_to_percentage @product.boleto, precision: 1%>
+  <%= number_to_percentage @product.credit, precision: 1%>
+  <%= number_to_percentage @product.pix, precision: 1 %>
+
+
+  <%= link_to 'Voltar', employees_products_path%>
