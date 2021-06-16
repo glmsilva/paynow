@@ -1,0 +1,6 @@
+<%= form_with model: PaymentMethodsCompany.new, url: employees_payment_method_payment_methods_companies_path(payment_method) do |form| %>
+    <h3>Preencha os campos</h3>
+            <%= form.label :code, 'Código Alfanúmerico Operadora do Cartão', class: 'form-label' %>
+            <%= form.text_field :code , class: 'form-control' %>
+            <%= form.submit 'Cadastrar Cartão', class:"btn btn-dark btn-lg"%>
+<% end %>

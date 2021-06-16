@@ -1,5 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe PaymentMethod, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe PaymentMethod, type: :model do
+  context 'validation' do
+    it 'attributes cannot be blank' do
+      payment_method = PaymentMethod.new
+      payment_method.valid?
+
+      expect(payment_method.errors[:name]).to include('não pode ficar em branco')
+      expect(payment_method.errors[:maxfee]).to include('não pode ficar em branco')
+      expect(payment_method.errors[:chargefee]).to include('não pode ficar em branco')
+
+    end
+  end
 end
+

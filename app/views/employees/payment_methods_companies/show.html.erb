@@ -1,0 +1,32 @@
+<div class="row">
+<%= render 'layouts/user_sidebar'%>
+
+<div class="col mt-5">
+<% if @payment_method.icon.attached? %>
+    <%= image_tag(@payment_method.icon, size: "100x100")%>
+<% end %>
+<%= @payment_method.name%>
+<p>Taxa de Cobrança:</p>
+<%= number_to_percentage @payment_method.chargefee%>
+<p>Taxa Máxima em R$:</p>
+<%= number_to_percentage @payment_method.maxfee%>
+<% if @payment_method.type == "CreditCard" %>
+<p>Código:</p>
+<%= @registered_method.code %>
+<% elsif @payment_method.type == "Boleto"%>
+<p>Código do Banco:</p>
+<%= @registered_method.bank_code%>
+<p>Número da Agência:</p>
+<%= @registered_method.branch_code%>
+<p>Número da Conta:</p>
+<%= @registered_method.bank_account%>
+<% else %>
+<p>Chave:</p> 
+<%= @registered_method.code %>
+<p>Código do Banco</p>
+<%= @registered_method.bank_code%>
+<% end %>
+
+<%= link_to 'Voltar', employees_metodos_pagamento_path%>
+</div>
+</div>

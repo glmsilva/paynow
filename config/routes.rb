@@ -28,6 +28,13 @@ Rails.application.routes.draw do
 
   namespace :employees do
     get 'index', to: 'home#index'
+    get 'metodos_pagamento', to: 'payment_methods_companies#index'
+    resources :payment_methods, only: %i[index] do 
+      resources :payment_methods_companies, only: %i[create update show] do 
+        post 'inactivate', on: :member
+      end
+      
+  end
     resources :companies, only: %i[new create]
   end
 end

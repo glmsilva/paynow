@@ -49,8 +49,6 @@ describe 'Users Manages their company' do
     login_as user, scope: :user
     visit root_path
     click_on 'Ver Token da Empresa'
-
     expect(page).to have_content(company.token)
   end
-
 end

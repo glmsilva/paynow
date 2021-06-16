@@ -1,0 +1,76 @@
+<div class="row">
+<%= render 'layouts/user_sidebar'%>
+<div class="col">
+<p class="fs-4">Métodos de pagamento disponíveis:</p>
+<% if @payment_methods_available.empty? %>
+    <p class="fs-6">Nenhum</p>
+<% end %>
+
+<% @payment_methods_available.each do |payment_method| %>
+    <% if payment_method.icon.attached? %>
+        <%= image_tag(payment_method.icon, size: "100x100") %>
+    <% end %>
+    <%= payment_method.name%>
+    Taxa Máxima em Reais: <%= number_to_currency payment_method.maxfee %>
+    Taxa de Cobrança:<%= number_to_percentage payment_method.chargefee, precision: 1%>
+    <div class="col-12 col-md-2 mb-3">
+    <button type="button" class="btn btn-outline-dark <%= payment_method.type%>" data-bs-toggle="modal" data-bs-target="#<%= payment_method.type %>Trigger">
+        Selecionar
+    </button>
+</div>
+
+<div class="modal fade" id="<%= payment_method.type %>Trigger" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+        <% case payment_method.type  %> 
+        <% when "CreditCard" %>
+        <%= "Cartão de Crédito" %>
+        <% when "Boleto" %>
+        <%= "Boleto" %>
+        <% when "Pix"%>
+        <%= "Pix" %>
+        <%end%>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <% case payment_method.type  %> 
+        <% when "CreditCard" %>
+        <%= render 'form_card', payment_method: payment_method.id %>        
+        <% when "Boleto" %>
+        <%= render 'form_boleto', payment_method: payment_method.id %>        
+        <% when "Pix"%>
+        <%= "Pix" %>
+        <%end%>
+        
+      </div>
+      <div class="modal-footer">
+      
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<%end%>
+
+
+
+<p class="fs-4">Métodos de pagamento cadastrados:</p>
+<% if @registered_methods.empty? %>
+    <p class="fs-6">Nenhum</p>
+<% end %>
+
+<% @registered_methods.each do |registered_method| %>
+    <% if registered_method.payment_method.icon.attached? %>
+        <%= image_tag(registered_method.payment_method.icon, size: "100x100") %>
+    <% end %>
+    <%= registered_method.payment_method.name%>
+    Taxa Máxima em Reais: <%= number_to_currency registered_method.payment_method.maxfee %>
+    Taxa de Cobrança:<%= number_to_percentage registered_method.payment_method.chargefee, precision: 1%>
+    <%= link_to 'Ver mais' , employees_payment_method_payment_methods_company_path(registered_method.payment_method, registered_method) %>
+    <%= link_to 'Inativar', inactivate_employees_payment_method_payment_methods_company_path(registered_method.payment_method, registered_method), method: :post %>
+<% end %>
+</div>
+</div>

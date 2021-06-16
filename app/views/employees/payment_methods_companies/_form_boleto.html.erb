@@ -1,0 +1,10 @@
+<%= form_with model: PaymentMethodsCompany.new, url: employees_payment_method_payment_methods_companies_path(payment_method) do |form| %>
+    <h3>Preencha os campos</h3>
+            <%= form.label :bank_code, 'Código do Banco', class: 'form-label' %>
+            <%= form.text_field :bank_code , class: 'form-control' %>
+            <%= form.label :branch_code, 'Número da Agência', class: 'form-label'%>
+            <%= form.text_field :branch_code, class:'form-control'%>
+            <%= form.label :bank_account, 'Número Conta Bancária', class: 'form-label'%>
+            <%= form.text_field :bank_account, class: 'form-control'%>
+            <%= form.submit 'Cadastrar Boleto', class:"btn btn-dark btn-lg"%>
+<% end %>

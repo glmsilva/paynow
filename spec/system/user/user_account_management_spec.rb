@@ -49,7 +49,6 @@ describe 'User account management' do
     click_on 'Registrar'
 
     expect(page).to have_content("Bem vindo, John Doe")
-    expect(page).to have_content('johndoe@codeplay.com.br')
     expect(current_path).to eq(employees_index_path)
   end
 
@@ -71,7 +70,6 @@ describe 'User account management' do
     visit root_path
 
     expect(page).to have_content('Bem vindo, John Doe')
-    expect(page).to have_content('johndoe@codeplay.com.br')
     expect(current_path).to eq(employees_index_path)
   end
 
