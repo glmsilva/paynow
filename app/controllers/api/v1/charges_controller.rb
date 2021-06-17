@@ -4,21 +4,28 @@ module Api
       def create 
         @charge = Charge.new(charge_params)
         @product = Product.find_by(token: params[:charge][:product_token])
+
         if @charge.payment_method == 'boleto'
           @charge.discount_price = set_discount(@product.price, @product.boleto)
         elsif @charge.payment_method == 'credit'
           @charge.discount_price = set_discount(@product.price,@product.credit) 
-        else 
+        elsif @charge.payment_method == 'pix'
           @charge.discount_price = set_discount(@product.price,@product.pix)
+        else 
+          render json: {
+            "Erro": "Método de Pagamento inválido"
+          }, status: :not_acceptable and return
         end
         @charge.regular_price = @product.price
 
         if @charge.save! 
           render json: @charge.as_json(except: [:id, :updated_at]), status: :created
+        else 
+          head 422
         end
 
-
-
+      rescue ActiveRecord::RecordInvalid
+      head 422
       end
 
       private 
