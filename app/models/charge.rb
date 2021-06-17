@@ -1,2 +1,3 @@
 class Charge < ApplicationRecord
+  
 end

@@ -1,0 +1,2 @@
+class CardCharge < Charge
+end

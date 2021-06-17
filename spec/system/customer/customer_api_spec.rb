@@ -8,13 +8,6 @@ describe 'Customer API' do
         billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
         billing_email: 'genericemail@codeplay.com.br',
         status: 0)
-      user = User.create!(name: 'John',
-        lastname: 'Doe',
-        email: 'johndoe@codeplay.com.br',
-        password: '123456',
-        status: 0,
-        role: 5)
-      Employee.create!(user: user, company: company)
       token = Digest::MD5.hexdigest 'Jane Doe451.712.100-39'
       post '/api/v1/customers', params: {
         customer: {company_token: company.token, name: 'Jane Doe', cpf: '451.712.100-39'}
@@ -37,13 +30,6 @@ describe 'Customer API' do
         billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
         billing_email: 'genericemail@nightchoose.com.br',
         status: 0)
-      user = User.create!(name: 'John',
-        lastname: 'Doe',
-        email: 'johndoe@codeplay.com.br',
-        password: '123456',
-        status: 0,
-        role: 5)
-      #Employee.create!(user: user, company: company)
       token = Digest::MD5.hexdigest 'Jane Doe451.712.100-39'
       Customer.create!(token: token[0,20])
       LogCustomer.create!(customer_token: token[0,20], company: company2)

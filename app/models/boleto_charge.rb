@@ -1,0 +1,2 @@
+class BoletoCharge < Charge
+end
