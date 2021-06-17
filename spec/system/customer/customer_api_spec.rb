@@ -1,7 +1,7 @@
 require 'rails_helper' 
 
 describe 'Customer API' do 
-  describe 'POST api/v1/customer/' do 
+  context 'POST api/v1/customer/' do 
     it 'create a customer bind to a company' do 
       company = Company.create!(name: 'Codeplay',
         cnpj: 77418744000155,

@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   enum status: { active: 0, inactive: 1 }
 
   def set_token
-      token = SecureRandom.alphanumeric(20)
-      self.token = token unless Product.where(token: token).exists?
-    end
+    token = SecureRandom.alphanumeric(20)
+    self.token = token unless Product.where(token: token).exists?
+  end
 end
