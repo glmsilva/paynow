@@ -133,6 +133,34 @@ describe 'User manages payment methods' do
       expect(page).to have_link('Ver mais')
     end
 
+    it 'and create a pix successfully' do 
+      company = Company.create!(name: 'Codeplay',
+        cnpj: 77418744000155,
+        billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
+        billing_email: 'genericemail@codeplay.com.br',
+        status: 0)
+user = User.create!(name: 'John',
+  lastname: 'Doe',
+  email: 'johndoe@codeplay.com.br',
+  password: '123456',
+  status: 0,
+  role: 5)
+Employee.create!(user: user, company: company)
+Pix.create!(name: 'Pix Banco Azul',chargefee: 10, maxfee: 50, icon: fixture_file_upload(Rails.root.join('spec/fixtures/banco-placeholder.png')))
+
+login_as user, scope: :user
+visit root_path
+click_on 'Métodos de Pagamento'
+find(:css, ".Pix").click
+fill_in 'Chave Pix', with: 'A$h3K3T6H1M69A$h3K3T6H1M69'
+fill_in 'Código do Banco', with: '479'
+click_on 'Cadastrar Pix'
+
+expect(page).to have_content('Método de Pagamento Cadastrado')
+expect(page).to have_content('Pix Banco Azul')
+expect(page).to have_link('Ver mais')
+    end
+
     it 'and inactivate a payment method' do 
           company = Company.create!(name: 'Codeplay',
                                     cnpj: 77418744000155,

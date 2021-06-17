@@ -42,7 +42,7 @@
         <% when "Boleto" %>
         <%= render 'form_boleto', payment_method: payment_method.id %>        
         <% when "Pix"%>
-        <%= "Pix" %>
+        <%= render 'form_pix', payment_method: payment_method.id %>
         <%end%>
         
       </div>

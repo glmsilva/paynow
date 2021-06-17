@@ -1,0 +1,8 @@
+<%= form_with model: PaymentMethodsCompany.new, url: employees_payment_method_payment_methods_companies_path(payment_method) do |form| %>
+    <h3>Preencha os campos</h3>
+            <%= form.label :code, 'Chave Pix', class: 'form-label' %>
+            <%= form.text_field :code , class: 'form-control' %>
+            <%= form.label :bank_code, 'Código do Banco', class: 'form-label' %>
+            <%= form.text_field :bank_code , class: 'form-control' %>
+            <%= form.submit 'Cadastrar Pix', class:"btn btn-dark btn-lg"%>
+<% end %>
