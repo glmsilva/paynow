@@ -172,10 +172,8 @@ describe 'User API' do
             customer_cpf: '45171210039'}
           }
 
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(404)
         expect(response.content_type).to include('application/json')
-        
-        expect(response.body).to include("não pode ficar em branco")
     end
 
     it 'should not create a charge with invalid params' do 

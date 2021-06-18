@@ -1,12 +1,9 @@
 module Api 
   module V1 
-    class ChargesController < ActionController::API
+    class ChargesController < ApiController
       def create 
         @charge = Charge.new(charge_params)
-        @product = Product.find_by(token: params[:charge][:product_token])
-        if !@product
-          render json: {produto: 'não pode ficar em branco'}, status: :unprocessable_entity and return
-        end
+        @product = Product.find_by!(token: params[:charge][:product_token])
 
         if @charge.payment_method == 'boleto'
           @charge.discount_price = set_discount(@product.price, @product.boleto)
@@ -19,12 +16,7 @@ module Api
 
         @charge.save!
           render json: @charge.as_json(except: [:id, :updated_at]), status: :created
-
-      rescue ActiveRecord::RecordInvalid
-          render json: @charge.errors, status: :unprocessable_entity
-      rescue ActionController::ParameterMissing
-        render json: {errors: 'parece que você não enviou nenhum parametro ou o valor é vazio, preencha e envie novamente.'}, 
-        status: :precondition_failed
+          
       end
 
       private 
