@@ -4,6 +4,9 @@ module Api
       def create 
         @charge = Charge.new(charge_params)
         @product = Product.find_by(token: params[:charge][:product_token])
+        if !@product
+          render json: {produto: 'não pode ficar em branco'}, status: :unprocessable_entity and return
+        end
 
         if @charge.payment_method == 'boleto'
           @charge.discount_price = set_discount(@product.price, @product.boleto)
@@ -11,21 +14,17 @@ module Api
           @charge.discount_price = set_discount(@product.price,@product.credit) 
         elsif @charge.payment_method == 'pix'
           @charge.discount_price = set_discount(@product.price,@product.pix)
-        else 
-          render json: {
-            "Erro": "Método de Pagamento inválido"
-          }, status: :not_acceptable and return
         end
         @charge.regular_price = @product.price
 
-        if @charge.save! 
+        @charge.save!
           render json: @charge.as_json(except: [:id, :updated_at]), status: :created
-        else 
-          head 422
-        end
 
       rescue ActiveRecord::RecordInvalid
-      head 422
+          render json: @charge.errors, status: :unprocessable_entity
+      rescue ActionController::ParameterMissing
+        render json: {errors: 'parece que você não enviou nenhum parametro ou o valor é vazio, preencha e envie novamente.'}, 
+        status: :precondition_failed
       end
 
       private 
