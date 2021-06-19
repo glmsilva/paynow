@@ -1,0 +1,38 @@
+<div class="row">
+    <%= render "layouts/admin_sidebar" %>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <nav aria-label="breadcrumb ">
+    <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item fs-4"><%=link_to 'Inicio', admin_index_path%> </li>
+        <li class="breadcrumb-item fs-4"><%=link_to 'Cobranças', admin_charges_path %></li>
+        <li class="breadcrumb-item fs-4 active" aria-current="page">Pendentes</li>
+    </ol>
+    </nav>
+    <hr class="feature-divider">
+
+    <table class="table table-hover table-sm table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Token</th>
+          <th scope="col">Token Empresa</th>
+          <th scope="col">Token Produto</th>
+          <th scope="col">Método de Pagamento</th>
+          <th scope="col">Detalhes</th>
+          <th scope="col">Aceitar</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @pendentes.each do |charge|%>
+        <tr>
+          <th scope="row"><%=charge.id%></th>
+          <td><%=charge.token%></td>
+          <td><%=charge.company_token%></td>
+          <td><%=charge.product_token%></td>
+          <td><%=charge.payment_method%></td>
+          <td><%= link_to 'Detalhes', admin_charge_path(charge.id), class:'btn btn-dark'%></td>
+          <td><%= link_to 'Aprovar', approve_admin_charge_path(charge.id),method: :post, class:'btn btn-success'%></td>
+
+        </tr>
+        <%end%>
+    </table>

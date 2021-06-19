@@ -8,3 +8,26 @@
     </ol>
     </nav>
     <hr class="feature-divider">
+
+  <div class="row">
+    <div class="col mx-2 card text-white bg-success mb-3" style="max-width: 10rem;max-height: 10rem;">
+      <div class="card-header fs-5">Aceitas</div>
+        <div class="card-body">
+          <h4 class="card-title text-center display-5"><%=@charges.efetivada.size%></h4>
+        </div>
+    </div>
+
+    <div class="col mx-2 card text-white bg-warning mb-3"  style="max-width: 10rem;max-height: 10rem;">
+      <div class="card-header fs-5"><%= link_to 'Pendentes', admin_pendentes_path , class: 'text-white'%></div>
+        <div class="card-body">
+          <h4 class="card-title text-center display-5"><%=@pendentes.size%></h4>
+        </div>
+    </div>
+
+        <div class="col mx-2 card text-white bg-danger mb-3"  style="max-width: 10rem;max-height: 10rem;">
+      <div class="card-header fs-5">Recusadas</div>
+        <div class="card-body">
+          <h4 class="card-title text-center display-5"><%=@recusadas.size %></h4>
+        </div>
+    </div>
+  </div>

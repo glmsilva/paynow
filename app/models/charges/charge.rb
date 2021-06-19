@@ -5,6 +5,7 @@ class Charge < ApplicationRecord
   :payment_method, :customer_name, 
   :customer_cpf,
   presence: :true
+  has_many :log_charges
 
   def set_token
     token = SecureRandom.alphanumeric(20)
