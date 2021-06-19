@@ -20,6 +20,12 @@ module Api
         status: :precondition_failed
       end
 
+      def generate_customer_token(name, cpf) 
+        customer_bind = name + cpf
+        customer_bind = Digest::MD5.hexdigest customer_bind 
+        customer_bind = customer_bind[0,20]
+      end
+
     end
   end
 end
