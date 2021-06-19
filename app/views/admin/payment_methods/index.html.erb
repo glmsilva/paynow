@@ -118,9 +118,7 @@
             <% @boletos.each do |boleto|%>
                 <div class="col">
                     <div class="card">
-                        <% if boleto.icon.attached? %>
                         <%= image_tag(boleto.icon, class: 'card-img-top', size: "100x100") %>
-                    <%end%>
                         <div class="card-body">
                             <h5 class="card-title"><%= link_to boleto.name, admin_boleto_path(boleto) %></h5>
                             <p class="card-text"> <%= boleto.status %></p>
@@ -140,9 +138,7 @@
             <% @pixs.each do |pix|%>
                 <div class="col">
                     <div class="card">
-                        <% if pix.icon.attached? %>
-                        <%= image_tag(pix.icon, class: 'card-img-top', size: "100x100") %>
-                    <%end%>
+                        <%= image_tag(pix.icon, class: 'card-img-top') %>
                         <div class="card-body">
                             <h5 class="card-title"><%= link_to pix.name, admin_pix_path(pix) %></h5>
                             <p class="card-text"> <%= pix.status %></p>

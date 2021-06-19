@@ -8,7 +8,7 @@ describe 'User API' do
         billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
         billing_email: 'genericemail@codeplay.com.br',
         status: 0)
-        token = Digest::MD5.hexdigest 'Jane Doe45171210039'
+        token = Digest::MD5.hexdigest 'Jane Doe451.712.100-39'
         Customer.create!(token: token[0,20])
         LogCustomer.create!(customer_token: token[0,20], company: company)
         product = Product.create!(name: 'Curso de Web', price: 40, boleto: 10, pix: 15, credit: 5, company: company)
@@ -18,7 +18,7 @@ describe 'User API' do
         post '/api/v1/charges', params: { 
           charge: { company_token: company.token, 
                     product_token: product.token, 
-                    payment_method: 'Boleto Banco Laranja', 
+                    payment_method: 'boleto', 
                     customer_name: 'Jane Doe', 
                     customer_cpf: '45171210039',
                     address:'Avenida André Antônio Maggi, Jardim Maria Vindilina I,78553-000,340, Sinop, MT' 
@@ -38,7 +38,7 @@ describe 'User API' do
           billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
           billing_email: 'genericemail@codeplay.com.br',
           status: 0)
-          token = Digest::MD5.hexdigest 'Jane Doe45171210039'
+          token = Digest::MD5.hexdigest 'Jane Doe451.712.100-39'
           Customer.create!(token: token[0,20])
           LogCustomer.create!(customer_token: token[0,20], company: company)
           product = Product.create!(name: 'Curso de Web', price: 40, boleto: 10, pix: 15, credit: 5, company: company)
@@ -48,7 +48,7 @@ describe 'User API' do
           post '/api/v1/charges', params: { 
             charge: { company_token: company.token, 
                       product_token: product.token, 
-                      payment_method: 'MasterCard', 
+                      payment_method: 'credit', 
                       customer_name: 'Jane Doe', 
                       customer_cpf: '45171210039',
                       card_number: '5386347583820863',
@@ -70,7 +70,7 @@ describe 'User API' do
         billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
         billing_email: 'genericemail@codeplay.com.br',
         status: 0)
-        token = Digest::MD5.hexdigest 'Jane Doe45171210039'        
+        token = Digest::MD5.hexdigest 'Jane Doe451.712.100-39'
         Customer.create!(token: token[0,20])
         LogCustomer.create!(customer_token: token[0,20], company: company)
         product = Product.create!(name: 'Curso de Web', price: 40, boleto: 10, pix: 15, credit: 5, company: company)
@@ -80,12 +80,12 @@ describe 'User API' do
         post '/api/v1/charges', params: { 
           charge: { company_token: company.token, 
                     product_token: product.token, 
-                    payment_method: 'Pix Banco Azul', 
+                    payment_method: 'credit', 
                     customer_name: 'Jane Doe', 
                     customer_cpf: '45171210039'
                   }
           } 
-          
+
         expect(response).to have_http_status(201)
         expect(response.content_type).to include('application/json')
         expect(response.body).to include("40")
@@ -99,7 +99,7 @@ describe 'User API' do
         billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
         billing_email: 'genericemail@codeplay.com.br',
         status: 0)
-        token = Digest::MD5.hexdigest 'Jane Doe45171210039'
+        token = Digest::MD5.hexdigest 'Jane Doe451.712.100-39'
         Customer.create!(token: token[0,20])
         LogCustomer.create!(customer_token: token[0,20], company: company)
         product = Product.create!(name: 'Curso de Web', price: 40, boleto: 10, pix: 15, credit: 5, company: company)
@@ -114,8 +114,9 @@ describe 'User API' do
                   }
           }
 
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(422)
         expect(response.content_type).to include('application/json')
+        expect(response.body).to include("não pode ficar em branco")
     end
     
     it 'and two product tokens' do 
@@ -124,7 +125,7 @@ describe 'User API' do
         billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
         billing_email: 'genericemail@codeplay.com.br',
         status: 0)
-        token = Digest::MD5.hexdigest 'Jane Doe45171210039'
+        token = Digest::MD5.hexdigest 'Jane Doe451.712.100-39'
         Customer.create!(token: token[0,20])
         LogCustomer.create!(customer_token: token[0,20], company: company)
         product = Product.create!(name: 'Curso de Web', price: 40, boleto: 10, pix: 15, credit: 5, company: company)
@@ -137,7 +138,7 @@ describe 'User API' do
           charge: { company_token: company.token, 
                     product_token: product.token, 
                     product_token: product2.token,
-                    payment_method: 'Pix Banco Azul', 
+                    payment_method: 'credit', 
                     customer_name: 'Jane Doe', 
                     customer_cpf: '45171210039'
                   }
@@ -158,7 +159,7 @@ describe 'User API' do
         billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
         billing_email: 'genericemail@codeplay.com.br',
         status: 0)
-        token = Digest::MD5.hexdigest 'Jane Doe45171210039'
+        token = Digest::MD5.hexdigest 'Jane Doe451.712.100-39'
         Customer.create!(token: token[0,20])
         LogCustomer.create!(customer_token: token[0,20], company: company)
         product = Product.create!(name: 'Curso de Web', price: 40, boleto: 10, pix: 15, credit: 5, company: company)
@@ -181,7 +182,7 @@ describe 'User API' do
         billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
         billing_email: 'genericemail@codeplay.com.br',
         status: 0)
-        token = Digest::MD5.hexdigest 'Jane Doe45171210039'
+        token = Digest::MD5.hexdigest 'Jane Doe451.712.100-39'
         Customer.create!(token: token[0,20])
         LogCustomer.create!(customer_token: token[0,20], company: company)
         product = Product.create!(name: 'Curso de Web', price: 40, boleto: 10, pix: 15, credit: 5, company: company)
@@ -190,12 +191,12 @@ describe 'User API' do
 
         post '/api/v1/charges', params: { 
           charge: { compra: 1,
-            payment_method: 'Pix Banco Azul',
             product_token: product.token,}
           }
 
-        expect(response).to have_http_status(404)
-        expect(response.content_type).to include('application/json') 
+        expect(response).to have_http_status(422)
+        expect(response.content_type).to include('application/json')   
+        expect(response.body).to include("não pode ficar em branco")
     end
 
     it 'should not create a charge without params' do 
@@ -204,7 +205,7 @@ describe 'User API' do
         billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
         billing_email: 'genericemail@codeplay.com.br',
         status: 0)
-        token = Digest::MD5.hexdigest 'Jane Doe45171210039'
+        token = Digest::MD5.hexdigest 'Jane Doe451.712.100-39'
         Customer.create!(token: token[0,20])
         LogCustomer.create!(customer_token: token[0,20], company: company)
         product = Product.create!(name: 'Curso de Web', price: 40, boleto: 10, pix: 15, credit: 5, company: company)

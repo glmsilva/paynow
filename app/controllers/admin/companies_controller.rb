@@ -3,7 +3,6 @@ module Admin
         def index 
             @companies = Company.where(status: :active)
             @total_employees = Employee.all.size
-            @total_products = Product.all.size
         end
 
         def edit
