@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#index'
+  resources :receipts, param: :slug, only: %i[show]
   #resources 'companies'
   namespace :admin do
     get 'index', to: 'home#index'
@@ -9,7 +10,10 @@ Rails.application.routes.draw do
       post 'inactivate', on: :member
       post 'change_token', on: :member
     end
-    get 'charges', to: 'charges#index'
+    resources :charges, only: %i[index show] do 
+      post 'approve', on: :member
+    end
+    get 'pendentes', to: 'charges#pending'
     resources :payment_methods, only: %i[index]
     resources :credit_cards do 
       post 'inactivate', on: :member
