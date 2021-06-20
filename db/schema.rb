@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_17_190856) do
+ActiveRecord::Schema.define(version: 2021_06_20_203422) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_190856) do
     t.integer "status", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "due_date"
     t.index ["token"], name: "index_charges_on_token", unique: true
   end
 
@@ -86,6 +87,16 @@ ActiveRecord::Schema.define(version: 2021_06_17_190856) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_employees_on_company_id"
     t.index ["user_id"], name: "index_employees_on_user_id"
+  end
+
+  create_table "log_charges", force: :cascade do |t|
+    t.integer "return_code"
+    t.datetime "attempt_date"
+    t.datetime "effective_date"
+    t.integer "charge_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["charge_id"], name: "index_log_charges_on_charge_id"
   end
 
   create_table "log_companies_changes", force: :cascade do |t|
@@ -157,6 +168,17 @@ ActiveRecord::Schema.define(version: 2021_06_17_190856) do
     t.index ["token"], name: "index_products_on_token", unique: true
   end
 
+  create_table "receipts", force: :cascade do |t|
+    t.date "due_date"
+    t.date "effective_date"
+    t.integer "authorization_code"
+    t.integer "charge_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["charge_id"], name: "index_receipts_on_charge_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -177,6 +199,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_190856) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "employees", "companies"
   add_foreign_key "employees", "users"
+  add_foreign_key "log_charges", "charges"
   add_foreign_key "log_companies_changes", "companies"
   add_foreign_key "log_companies_changes", "users"
   add_foreign_key "log_customers", "companies"
@@ -185,4 +208,5 @@ ActiveRecord::Schema.define(version: 2021_06_17_190856) do
   add_foreign_key "payment_methods_companies", "companies"
   add_foreign_key "payment_methods_companies", "payment_methods"
   add_foreign_key "products", "companies"
+  add_foreign_key "receipts", "charges"
 end

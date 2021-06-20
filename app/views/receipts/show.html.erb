@@ -1,0 +1,8 @@
+<%= @receipt.due_date%>
+<%= @receipt.effective_date%>
+<%= t(@receipt.charge.status)%>
+<%= @company.name%>
+<%= @product.name%>
+<%= @receipt.charge.payment_method%>
+<%= number_to_currency @receipt.charge.regular_price%>
+<%= number_to_currency @receipt.charge.discount_price%>

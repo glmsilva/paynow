@@ -32,22 +32,20 @@ describe 'Admin updates charges' do
         verification_code: "969", 
         regular_price: 20.97, 
         discount_price: 16.7,
+        status: 5,
         due_date: 1.month.from_now)
+        Receipt.create!(due_date:1.month.from_now, effective_date: Date.today, charge: Charge.last )
 
-      login_as admin, scope: :user
-      visit root_path 
-      click_on 'Cobranças'
-      click_on 'Pendentes'
-      click_on 'Aprovar'
 
-      expect(page).to have_content(Charge.last.token)
+      visit receipt_path(Receipt.last.slug)
       expect(page).to have_content('Efetivada')
-      expect(page).to have_content(company.token)
-      expect(page).to have_content(product.token)
+      expect(page).to have_content(company.name)
+      expect(page).to have_content(product.name)
       expect(page).to have_content('MasterCard')
-      expect(page).to have_content('20.97')
-      expect(page).to have_content('16.7')
-      expect(page).to have_link('Ver recibo')
+      expect(page).to have_content('R$ 20,97')
+      expect(page).to have_content('R$ 16,70')
+      expect(page).to have_content(Receipt.last.due_date)
+      expect(page).to have_content(Receipt.last.effective_date)
     end 
   end
 end
