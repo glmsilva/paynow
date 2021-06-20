@@ -1,8 +1,7 @@
 require 'rails_helper' 
 
-describe 'Admin updates charges' do 
-  context 'accept a charge' do 
-    it 'should accept a charge succesfully' do 
+describe 'Visitor view receipt' do 
+    it 'succesfully' do 
       admin = User.create!(email: 'johndoe@paynow.com.br', password: 'ec1@eR0r', name: 'John', lastname: 'Doe', role: 10)
       CreditCard.create!(name: 'MasterCard',chargefee: 10, maxfee: 50, icon: fixture_file_upload(Rails.root.join('spec/fixtures/Mastercard-Logo.png')))
       company = Company.create!(name: 'Codeplay',
@@ -32,7 +31,8 @@ describe 'Admin updates charges' do
         verification_code: "969", 
         regular_price: 20.97, 
         discount_price: 16.7,
-        status: 5)
+        status: 5,
+        due_date: 1.month.from_now)
         Receipt.create!(due_date:1.month.from_now, effective_date: Date.today, charge: Charge.last )
 
 
@@ -46,5 +46,4 @@ describe 'Admin updates charges' do
       expect(page).to have_content(Receipt.last.due_date)
       expect(page).to have_content(Receipt.last.effective_date)
     end 
-  end
 end
