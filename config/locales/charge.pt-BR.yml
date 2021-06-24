@@ -1,0 +1,32 @@
+---
+pt-BR:
+  activerecord:
+    attributes:
+      charge:
+        statuses:
+          pending: Pendente
+          approved: Efetivada
+
+
+
+
+# pt-BR:
+#   activerecord:
+#     models:
+#       charge:
+#         one: Cobrança
+#         other: Cobranças
+#       attributes:
+#         charge:
+#           customer_name: Nome do Cliente
+#           customer_cpf: Cpf do Cliente
+#           card_number: Número do Cartão
+#           card_name: Nome no Cartão
+#           verification_code: Código de verificação
+#           address: Endereço
+#           regular_price: Preço Normal
+#           discount_price: Preço com desconto
+#           statuses: 
+#             pending: Pendente
+#             approved: Efetivada
+#           due_date: Data de Vencimento

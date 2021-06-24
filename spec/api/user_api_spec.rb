@@ -29,7 +29,7 @@ describe 'User API' do
         expect(response.content_type).to include('application/json')
         expect(response.body).to include("40")
         expect(response.body).to include('Jane Doe')
-        expect(response.body).to include('pendente')
+        expect(response.body).to include('pending')
     end
 
     it 'issue credit card charges' do 
@@ -61,7 +61,7 @@ describe 'User API' do
           expect(response.content_type).to include('application/json')
           expect(response.body).to include("40")
           expect(response.body).to include('Jane Doe')
-          expect(response.body).to include('pendente')
+          expect(response.body).to include('pending')
     end
 
     it 'issue pix charges' do 
@@ -90,7 +90,7 @@ describe 'User API' do
         expect(response.content_type).to include('application/json')
         expect(response.body).to include("40")
         expect(response.body).to include('Jane Doe')
-        expect(response.body).to include('pendente')
+        expect(response.body).to include('pending')
     end
 
     it 'and no payment method inserted' do 
@@ -148,7 +148,7 @@ describe 'User API' do
         expect(response.content_type).to include('application/json')
         expect(response.body).to include("40")
         expect(response.body).to include('Jane Doe')
-        expect(response.body).to include('pendente')
+        expect(response.body).to include('pending')
         expect(response.body).to include(product2.token)
         expect(response.body).not_to include(product.token)
     end

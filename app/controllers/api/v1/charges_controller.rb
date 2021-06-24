@@ -34,15 +34,20 @@ module Api
       def update 
         @charge = Charge.find_by!(token: params[:charge][:token])
         @log = LogCharge.create!(return_code: params[:charge][:status].to_i, attempt_date: Date.today, charge: @charge)
-        if @log.efetivada?
-          @charge.efetivada! 
+        if @log.approved?
+          @charge.approved!
           @log.effective_date = Date.today
           
         else 
-          @charge.pendente!
+          @charge.pending!
         end
 
-        render json: @log.as_json(except: [:id, :charge_id, :update_at, :created_at], include: { charge: { except: [:id, :updated_at]} }), status: :accepted
+        render json: @log.as_json(except: [:id, :charge_id, :update_at, :created_at], 
+                                  include: { charge: { 
+                                    except: [:id, :updated_at]
+                                    }
+                                  }
+                                  ), status: :accepted
       end
 
       private 

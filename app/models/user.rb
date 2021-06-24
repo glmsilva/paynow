@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  after_create :admin_privileges
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -9,6 +10,12 @@ class User < ApplicationRecord
   enum status: { active: 0, inactive: 1}
   enum role: { employee: 0, company_admin: 5, admin: 10 }
 
+
+  def admin_privileges 
+    if self.domain == "paynow" 
+      self.admin!
+    end
+  end
 
   def full_name
     "#{name} #{lastname}"

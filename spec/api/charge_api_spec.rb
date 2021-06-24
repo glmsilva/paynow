@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Update carges via api' do 
+describe 'Update charges via api' do 
   context 'PUT api/v1/charges' do 
     it 'and should accept a charge successfully' do 
       admin = User.create!(email: 'johndoe@paynow.com.br', password: 'ec1@eR0r', name: 'John', lastname: 'Doe', role: 10)
@@ -44,7 +44,7 @@ describe 'Update carges via api' do
 
         expect(response).to have_http_status(202)
         expect(response.content_type).to include("application/json")
-        expect(response.body).to include('efetivada')
+        expect(response.body).to include('approved')
     end
 
     it 'and should reject a charge' do
@@ -89,8 +89,8 @@ describe 'Update carges via api' do
   
           expect(response).to have_http_status(202)
           expect(response.content_type).to include("application/json")
-          expect(response.body).to include('recusada')
-          expect(response.body).to include('pendente')
+          expect(response.body).to include('refused')
+          expect(response.body).to include('pending')
     end
   end
 
@@ -136,8 +136,8 @@ describe 'Update carges via api' do
   
           expect(response).to have_http_status(202)
           expect(response.content_type).to include("application/json")
-          expect(response.body).to include('2021-07-20')
-          expect(response.body).to include('pendente')
+          expect(response.body).to include(1.month.from_now.strftime('%Y-%m-%d'))
+          expect(response.body).to include('pending')
 
 
     end
@@ -184,7 +184,7 @@ describe 'Update carges via api' do
           expect(response).to have_http_status(202)
           expect(response.content_type).to include("application/json")
           expect(response.body).to include('MasterCard')
-          expect(response.body).to include('pendente')
+          expect(response.body).to include('pending')
     end
 
     it 'and should filter by both' do 
@@ -229,9 +229,9 @@ describe 'Update carges via api' do
   
           expect(response).to have_http_status(202)
           expect(response.content_type).to include("application/json")
-          expect(response.body).to include('2021-07-20')
+          expect(response.body).to include(1.month.from_now.strftime('%Y-%m-%d'))
           expect(response.body).to include('MasterCard')
-          expect(response.body).to include('pendente')
+          expect(response.body).to include('pending')
 
 
     end

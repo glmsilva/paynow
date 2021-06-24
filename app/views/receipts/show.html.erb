@@ -1,6 +1,7 @@
 <%= @receipt.due_date%>
 <%= @receipt.effective_date%>
-<%= t(@receipt.charge.status)%>
+<%= Charge.human_enum_name(:status, @receipt.charge.status)%>
+
 <%= @company.name%>
 <%= @product.name%>
 <%= @receipt.charge.payment_method%>

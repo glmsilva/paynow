@@ -7,19 +7,7 @@ pt-BR:
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
-    models:
-      company:
-        one: Empresa
-        other: Empresas
-      attributes:
-        company:
-          name: Nome
-          cnpj: Cnpj
-          company/status:
-            active: Ativo
-            inactive: Inactive
-          billing_email: Email de Faturamento
-          billing_address: Endereço de Faturamento
+    
   date:
     abbr_day_names:
     - dom

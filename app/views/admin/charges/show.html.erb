@@ -1,5 +1,5 @@
 <%= @charge.token%>
-<%= t(@charge.status)%>
+<%= Charge.human_enum_name(:status, @charge.status)%>
 <%= @charge.company_token%>
 <%= @charge.product_token%>
 <%= @charge.customer_name%>

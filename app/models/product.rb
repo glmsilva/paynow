@@ -7,6 +7,6 @@ class Product < ApplicationRecord
 
   def set_token
     token = SecureRandom.alphanumeric(20)
-    self.token = token unless Product.where(token: token).exists?
+    Product.where(token: token).exists? ? set_token : self.token = token
   end
 end

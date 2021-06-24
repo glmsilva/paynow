@@ -9,24 +9,11 @@ module Employees
         def create 
             @company = Employee.find_by(user: current_user).company
             @payment_method = PaymentMethod.find(params[:payment_method_id])
-            if @payment_method.type == "Boleto"
-                boleto = BoletoCompany.new(method_params)
-                boleto.company = @company
-                boleto.payment_method = @payment_method
-                boleto.save
-            end
-            if @payment_method.type == "CreditCard"
-                card = CreditCardCompany.new(method_params)
-                card.company = @company
-                card.payment_method = @payment_method
-                card.save
-            end
-            if @payment_method.type == "Pix"
-                pix = PixCompany.new(method_params)
-                pix.company = @company
-                pix.payment_method = @payment_method
-                pix.save
-            end
+            pm = PaymentMethodsCompany.new(method_params)
+            pm.type = "#{@payment_method.type}Company"
+            pm.company = @company
+            pm.payment_method = @payment_method
+            pm.save!
 
             redirect_to employees_metodos_pagamento_path, notice: 'Método de Pagamento Cadastrado'
         end
