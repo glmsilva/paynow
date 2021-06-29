@@ -29,7 +29,12 @@
             <%= form.email_field :billing_email, class: 'form-control'%>
         </div>
         <div class="mb-3">
-        <%= link_to 'Inativar', inactivate_admin_company_path(@company), method: :post  , class: 'btn-lg btn-outline-dark' %>
+        <% if @company.active? %>
+            <%= link_to 'Inativar', inactivate_admin_company_path(@company), method: :post  , class: 'btn-lg btn-outline-dark' %>
+        <% else %>
+            <%=link_to 'Ativar', activate_admin_company_path(@company), method: :post, class:'btn-lg btn-outline-dark' %>
+
+        <% end %>
             <%= form.submit 'Salvar', class: 'btn-lg btn-primary' %>
             
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>

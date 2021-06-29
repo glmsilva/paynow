@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get 'index', to: 'home#index'
     resources :companies, only: %i[edit update show index] do 
       post 'inactivate', on: :member
+      get 'show_inactivates', on: :collection
+      post 'activate', on: :member
       post 'change_token', on: :member
     end
     resources :charges, only: %i[index show] do 

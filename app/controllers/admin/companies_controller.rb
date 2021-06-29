@@ -32,6 +32,10 @@ module Admin
         redirect_to admin_company_path(@company), notice: 'Cliente em pendência para ser inativado'
       end
     end
+
+    def show_inactivates
+      @companies = Company.unavailable
+    end
     def activate 
       @company = Company.find(params[:id])
       log = LogCompaniesChange.find_by(company: @company)

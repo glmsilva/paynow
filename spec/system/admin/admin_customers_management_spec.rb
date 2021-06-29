@@ -95,6 +95,28 @@ describe 'Admin manages customer' do
         expect(current_path).to eq(admin_companies_path)
     end
 
+    it 'should not inactivate without confirmation from another admin' do
+        admin1 = User.create!(email: 'johndoe@paynow.com.br', password: 'ec1@eR0r', name: 'John', lastname: 'Doe', role: 10)
+        admin2 = User.create!(email: 'bwayne@paynow.com.br', password: 'ec1@eR0r', name: 'Bruce', lastname: 'Wayne', role: 10)
+        company = Company.create!(name: 'coodeplay',
+            cnpj: '77418744000155',
+            billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
+            billing_email: 'genericemail@codeplay.com.br',
+            status: 0)
+
+        user = User.create!(email: 'janedoe@codeplay.com.br', password: 'ec1@eR0r', name: 'Jane', lastname: 'Doe', role: 10)
+        Employee.create!(user: user, company: company)
+
+        login_as admin2, scope: :user
+        visit admin_index_path
+        click_on 'Clientes'
+        click_on 'Editar'
+        click_on 'Inativar'
+
+        expect(page).to have_content('Cliente em pendência para ser inativado')
+
+    end
+
     it 'and inactivate a customer' do 
         admin1 = User.create!(email: 'johndoe@paynow.com.br', password: 'ec1@eR0r', name: 'John', lastname: 'Doe', role: 10)
         admin2 = User.create!(email: 'bwayne@paynow.com.br', password: 'ec1@eR0r', name: 'Bruce', lastname: 'Wayne', role: 10)
@@ -139,7 +161,30 @@ describe 'Admin manages customer' do
         expect(page).to have_content('Inativar')
         expect(page).to have_content('Desculpe, você não tem autorização para fazer isso')
     end
-    
+
+    it 'and activate a customer' do 
+        admin1 = User.create!(email: 'johndoe@paynow.com.br', password: 'ec1@eR0r', name: 'John', lastname: 'Doe', role: 10)
+        admin2 = User.create!(email: 'bwayne@paynow.com.br', password: 'ec1@eR0r', name: 'Bruce', lastname: 'Wayne', role: 10)
+        company = Company.create!(name: 'coodeplay',
+            cnpj: '77418744000155',
+            billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
+            billing_email: 'genericemail@codeplay.com.br',
+            status: 1)
+
+        user = User.create!(email: 'janedoe@codeplay.com.br', password: 'ec1@eR0r', name: 'Jane', lastname: 'Doe', role: 10)
+        Employee.create!(user: user, company: company)
+        LogCompaniesChange.create!(user: admin1, company: company, status: 0, category: 1)
+
+        login_as admin2, scope: :user
+        visit admin_index_path
+        click_on 'Clientes'
+        click_on 'Ver Inativos'
+        click_on 'Editar'
+        click_on 'Ativar'
+
+        expect(page).to have_content('Inativar')
+        expect(page).to have_content('Cliente reativado com sucesso')
+    end    
     it 'and return to companies page' do 
         user = User.create!(email: 'johndoe@paynow.com.br', password: 'ec1@eR0r', name: 'John', lastname: 'Doe', role: 10)
         company = Company.create!(name: 'cooodeplay',

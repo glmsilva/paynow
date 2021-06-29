@@ -12,10 +12,6 @@ class Charge < ApplicationRecord
 
   def set_token
     token = SecureRandom.alphanumeric(20)
-    if Charge.where(token: token).exists?
-      set_token
-    else 
-      self.token = token
-    end
+      Charge.where(token: token).exists? ? set_token : self.token = token
   end
 end
