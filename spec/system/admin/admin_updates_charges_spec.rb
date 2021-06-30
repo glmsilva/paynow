@@ -45,8 +45,8 @@ describe 'Admin updates charges' do
       expect(page).to have_content(company.token)
       expect(page).to have_content(product.token)
       expect(page).to have_content('MasterCard')
-      expect(page).to have_content('20.97')
-      expect(page).to have_content('16.7')
+      expect(page).to have_content('R$ 20,97')
+      expect(page).to have_content('R$ 16,70')
       expect(page).to have_link('Ver recibo')
     end 
   end

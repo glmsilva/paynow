@@ -5,6 +5,6 @@
 <%= @charge.customer_name%>
 <%= @charge.customer_cpf%>
 <%= @charge.payment_method%>
-<%= @charge.regular_price%>
-<%= @charge.discount_price%>
+<%= number_to_currency @charge.regular_price%>
+<%= number_to_currency @charge.discount_price%>
 <%= link_to 'Ver recibo', receipt_path(@receipt.slug)%>

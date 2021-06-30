@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       post 'approve', on: :member
     end
     get 'pendentes', to: 'charges#pending'
+    get 'aprovadas', to: 'charges#approved'
     resources :payment_methods, only: %i[index]
     resources :credit_cards do 
       post 'inactivate', on: :member
