@@ -1,7 +1,7 @@
 module  Employees
   class ProductsController < EmployeesController 
     def index 
-      @products = Product.where(status: :active)
+      @products = Product.available
       @product = Product.new
     end
 

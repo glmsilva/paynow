@@ -16,14 +16,7 @@ module Api
       def create 
         @charge = Charge.new(charge_params)
         @product = Product.find_by!(token: params[:charge][:product_token])
-
-        if @charge.payment_method == 'boleto'
-          @charge.discount_price = set_discount(@product.price, @product.boleto)
-        elsif @charge.payment_method == 'credit'
-          @charge.discount_price = set_discount(@product.price,@product.credit) 
-        elsif @charge.payment_method == 'pix'
-          @charge.discount_price = set_discount(@product.price,@product.pix)
-        end
+        @charge.apply_discount(@product)
         @charge.regular_price = @product.price
 
         @charge.save!
@@ -33,7 +26,8 @@ module Api
 
       def update 
         @charge = Charge.find_by!(token: params[:charge][:token])
-        @log = LogCharge.create!(return_code: params[:charge][:status].to_i, attempt_date: Date.today, charge: @charge)
+        @log = LogCharge.create!(return_code: params[:charge][:status].to_i, 
+                                 attempt_date: Date.today, charge: @charge)
         if @log.approved?
           @charge.approved!
           @log.effective_date = Date.today
@@ -56,9 +50,7 @@ module Api
         params.require(:charge).permit(:company_token, :product_token, :payment_method, :customer_name, :customer_cpf, :card_number, :card_name, :verification_code, :address)
       end
       
-      def set_discount(param1, param2)
-        param1 - param1/param2
-      end
+      
     end
   end
 end

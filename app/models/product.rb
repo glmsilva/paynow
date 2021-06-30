@@ -5,6 +5,8 @@ class Product < ApplicationRecord
 
   enum status: { active: 0, inactive: 1 }
 
+  scope :available, -> {where(status: :active)}
+
   def set_token
     token = SecureRandom.alphanumeric(20)
     Product.where(token: token).exists? ? set_token : self.token = token

@@ -20,11 +20,9 @@ module Admin
       @company = Company.find(params[:id])
       log = LogCompaniesChange.find_by(company: @company)
       if log 
-        if log.pending? && log.user != current_user 
-          log.approved!
-          @company.inactive!
+        if log.inactivate_company(@company, current_user) 
           redirect_to admin_company_path(@company), notice: 'Cliente inativado com sucesso'
-        else
+        else 
           redirect_to admin_company_path(@company), alert: 'Desculpe, você não tem autorização para fazer isso'
         end
       else
@@ -39,11 +37,9 @@ module Admin
     def activate 
       @company = Company.find(params[:id])
       log = LogCompaniesChange.find_by(company: @company)
-      if log.approved? && log.suspension?
-        @company.active!
-        LogCompaniesChange.create(user: current_user, company: @company, category: :modification, status: 0)
-        redirect_to admin_company_path(@company), notice: 'Cliente reativado com sucesso'
-      end
+      log.activate_company(@company)
+      LogCompaniesChange.create(user: current_user, company: @company, category: :modification, status: 0)
+      redirect_to admin_company_path(@company), notice: 'Cliente reativado com sucesso'
     end
     def change_token 
       @company = Company.find(params[:id])
