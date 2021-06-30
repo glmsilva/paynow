@@ -28,7 +28,13 @@ Vá até a pasta do projeto
 Instale as dependências
 
 ```bash
-  $ bundle install
+  $ bin/setup
+```
+
+Popule o banco de dados com os seeds
+
+```bash
+  $ rails db:reset
 ```
 
 Inicie o servidor
