@@ -3,6 +3,10 @@ module Employees
     before_action :authenticate_user!
     before_action :employee_access
 
+    def index 
+      @employees = Employee.available
+    end
+
     private
 
     def employee_access

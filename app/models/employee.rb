@@ -5,4 +5,6 @@ class Employee < ApplicationRecord
   has_many :payment_methods_companies
 
   enum status: {active: 0, inactive: 1}
+
+  scope :available, -> {where(status: :active)}
 end

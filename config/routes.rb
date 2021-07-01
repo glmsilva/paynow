@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     end
     resources :companies, only: %i[new create]
     resources :products, only: %i[index create edit update show]
+    resources :employees, only: %i[index]
   end
 
   namespace :api do 
