@@ -1,11 +1,11 @@
 module Admin 
   class ChargesController < AdminController
-   def index
-    @pendentes = Charge.available_pending
-    @efetivadas = Charge.available_approved
-    @charges = Charge.all
-    @recusadas = @charges.where.not(status: [:pending, :approved])
-   end
+    def index
+      @pendentes = Charge.available_pending
+      @efetivadas = Charge.available_approved
+      @charges = Charge.all
+      @recusadas = @charges.where.not(status: %i[pending approved])
+     end
 
    def show 
     @charge = Charge.find(params[:id])

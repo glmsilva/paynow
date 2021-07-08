@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe 'User manages payment methods' do 
-    it 'and view none payment methods available yet' do 
-        company = Company.create!(name: 'Codeplay',
+  it 'and view none payment methods available yet' do 
+      company = Company.create!(name: 'Codeplay',
                                   cnpj: 77418744000155,
                                   billing_address: 'Rua 1, Bairro 2, nº 123, São Paulo',
                                   billing_email: 'genericemail@codeplay.com.br',
@@ -13,12 +13,11 @@ describe 'User manages payment methods' do
                             password: '123456',
                             status: 0,
                             role: 5)
-    
         Employee.create!(user: user, company: company)
         login_as user, scope: :user
         visit root_path
         click_on 'Métodos de Pagamento'
-    
+
         expect(page).to have_content('Métodos de pagamento disponíveis:')
         expect(page).to have_content('Nenhum', count: 2)
         expect(page).to have_content('Métodos de pagamento cadastrados:')

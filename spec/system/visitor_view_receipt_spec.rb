@@ -33,7 +33,7 @@ describe 'Visitor view receipt' do
         discount_price: 16.7,
         status: 5,
         due_date: 1.month.from_now)
-        Receipt.create!(due_date:1.month.from_now, effective_date: Date.today, charge: Charge.last )
+        Receipt.create!(due_date:1.month.from_now, effective_date: Date.today, charge: Charge.last)
 
 
       visit receipt_path(Receipt.last.slug)
